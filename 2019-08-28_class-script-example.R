@@ -1,1 +1,0 @@
-## Class example 2019-08-28
