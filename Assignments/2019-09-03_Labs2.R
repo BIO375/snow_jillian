@@ -1,4 +1,4 @@
-### Lab 2. Brief Introduction to RStudio
+# Lab 2. Brief Introduction to RStudio
 
 # Before anything else, verify that your environment is totally clear.
 # This is important, because old objects can foul up the works
@@ -51,7 +51,7 @@ ggplot(data)+
 # Note that you must have the column name EXACTLY correct.  Try, for example,
 # the following code
 ggplot(data)+
-  geom_histogram(aes(right_arm), binwidth = 10)
+  geom_histogram(aes(right arm), binwidth = 10)
 
 # Look at the help file for geom_boxpolot
 help("geom_boxplot")
@@ -71,9 +71,9 @@ ggplot(data)+
 # Dataset found at datasets/quinn/chpt2/lovett.csv
 # Enter your code below
 
-data2 <-read_csv("datasets/quinn/chpt2/lovett.csv",col_names = TRUE,
+data2<-read_csv("datasets/quinn/chpt2/lovett.csv",col_names = TRUE,
                col_types = cols(
-                 name = col_character() )
+                 STREAM = col_character() )
 )
 
 # Calculate summary statistics for SO4 and SO4MOD
