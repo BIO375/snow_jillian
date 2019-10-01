@@ -1,5 +1,4 @@
 Scenerio One:
-  
 rm(list = ls())
 
 library("tidyverse")
@@ -26,7 +25,6 @@ ggplot(Births)+
   geom_boxplot(aes(x = Country, y = Birth_Difference), notch = TRUE, varwidth = TRUE)
 
 Scenerio 2:
-  
 rm(list = ls())
 
 library("tidyverse")
