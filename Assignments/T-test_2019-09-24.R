@@ -43,7 +43,8 @@ summ_data01 <- data01 %>%
             var_squamosalHornLength = var(squamosalHornLength))
 
 ggplot(data01) +
-  geom_histogram(aes(squamosalHornLength), binwidth = 2)
+  geom_histogram(aes(squamosalHornLength), binwidth = 2) +
+  facet_wrap(~Survival)
 
 ggplot(data01)+
   geom_boxplot(aes(x = Survival, y = squamosalHornLength), notch = TRUE, varwidth = TRUE)
