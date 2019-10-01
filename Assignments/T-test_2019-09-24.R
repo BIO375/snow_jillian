@@ -34,8 +34,8 @@ tidyverse_update()
 data01 <- read_csv("datasets/abd/chapter12/chap12e3HornedLizards.csv")
 data01 <- %>% slice (-105)
 
-The code u gave above would not slice the 105 N/A observation in the dataset so I put the dataset into excel and took it out myself as a way of working around the problem.  
-This is the dataset I made (ignore the X3 column):
+The code u gave above would not slice the 105 N/A observation in the dataset so I put the dataset into excel and took out the n/a myself as a way of working around the problem.  
+This is the dataset I made (ignore the X3 column <-doesnt affect anything):
   
 library(readr)
 data01 <- read_csv("datasets/demos/data01.csv")
