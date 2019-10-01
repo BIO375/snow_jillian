@@ -1,4 +1,5 @@
 Scenerio One:
+  
 rm(list = ls())
 
 library("tidyverse")
@@ -25,6 +26,7 @@ ggplot(Births)+
   geom_boxplot(aes(x = Country, y = Birth_Difference), notch = TRUE, varwidth = TRUE)
 
 Scenerio 2:
+  
 rm(list = ls())
 
 library("tidyverse")
@@ -43,7 +45,8 @@ summ_data01 <- data01 %>%
             var_squamosalHornLength = var(squamosalHornLength))
 
 ggplot(data01) +
-  geom_histogram(aes(squamosalHornLength), binwidth = 2)
+  geom_histogram(aes(squamosalHornLength), binwidth = 2) +
+  facet_wrap(~Survival)
 
 ggplot(data01)+
   geom_boxplot(aes(x = Survival, y = squamosalHornLength), notch = TRUE, varwidth = TRUE)
