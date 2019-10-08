@@ -38,7 +38,7 @@ heartAttack_data <- read_csv("datasets/demos/HeartAttack_short.csv", col_names =
 )
 View(heartAttack_data)
 
-summ_HeartAttack_data <- heartAttack_data %>%
+summ_HeartAttack_short <- heartAttack_data %>%
   group_by(group) %>% 
   summarise(mean_cholest = mean(cholest),
             sd_cholest = sd(cholest),
