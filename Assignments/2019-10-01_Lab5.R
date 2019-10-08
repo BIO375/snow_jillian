@@ -32,10 +32,13 @@ two_tailed <- 2*(1-pt(abs(t_sample), df))
 #Question 2:
 
 library(readr)
-heartAttack_data <- read_csv("datasets/demos/HeartAttack_short.csv")
+heartAttack_data <- read_csv("datasets/demos/HeartAttack_short.csv", col_names = TRUE,
+                             col_types = cols(
+                               group = col_character())
+)
 View(heartAttack_data)
 
-summ_HeartAttack_short <- heartAttack_data %>%
+summ_HeartAttack_data <- heartAttack_data %>%
   group_by(group) %>% 
   summarise(mean_cholest = mean(cholest),
             sd_cholest = sd(cholest),
@@ -46,8 +49,8 @@ ggplot(heartAttack_data) +
   facet_wrap(~group)
 
 ggplot(heartAttack_data) +
-  geom_boxplot(aes(x = group, y = cholest))
-
+  geom_boxplot(aes(x = group, y = cholest), varwidth = TRUE)
+  
 ggplot(heartAttack_data)+
   geom_qq(aes(sample = cholest, color = group))
 
