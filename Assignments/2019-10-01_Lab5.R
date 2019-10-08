@@ -64,6 +64,12 @@ library(readr)
 furness <- read_csv("datasets/quinn/chpt3/furness.csv")
 View(furness)
 
+summ_furness <- furness %>%
+  group_by(SEX) %>% 
+  summarise(mean_METRATE = mean(METRATE),
+            sd_METRATE = sd(METRATE),
+            n_METRATE = n())
+
 ggplot(furness) +
   geom_histogram(aes(METRATE), binwidth = 400)+
   facet_wrap(~SEX)
