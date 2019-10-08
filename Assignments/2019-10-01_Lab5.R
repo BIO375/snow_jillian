@@ -82,7 +82,7 @@ library(readr)
 elgar <- read_csv("datasets/quinn/chpt3/elgar.csv")
 View(elgar)
 
-elgar <- mutate(elgar, diff = HORIZDIM - HORIZLIG)
+elgar <- mutate(elgar, diff = HORIZLIG - HORIZDIM)
 
 ggplot(elgar) +
   geom_histogram(aes(diff), binwidth = 60)
@@ -93,5 +93,5 @@ ggplot(elgar) +
 ggplot(elgar)+
   geom_qq(aes(sample = diff))
 
-t.test(elgar$HORIZDIM, elgar$HORIZLIG, 
+t.test(elgar$HORIZLIG, elgar$HORIZDIM, 
        alternative = "two.sided", paired = TRUE, conf.level = 0.95)
