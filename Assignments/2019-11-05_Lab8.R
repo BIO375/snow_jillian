@@ -88,9 +88,53 @@ repeatability
 
 #### Chapter 15: Problem 23 ####
 # Complete part a 
+# A) What do we label this type of comparison? (identify and execute that test!)
 
-# A) What do we label this type of comparison? (identify and execute that test)
+# You would label this type of comparison as planned comparison.
 
+library(readr)
+LPC_data <- read_csv("datasets/abd/chapter15/chap15q23LodgepolePineCones.csv", col_types = cols(
+  habitat = col_factor() ))
+View(LPC_data)
+
+head(LPC_data)
+summary(LPC_data)
+
+# Boxplot, Q-Q plot and Histogram:
+ggplot(LPC_data, aes(x = habitat, y = conemass))+
+  geom_boxplot() +
+  theme_bw() +
+  coord_flip()
+
+ggplot(LPC_data) +
+  geom_histogram(aes(conemass), binwidth = .4)
+
+ggplot(LPC_data)+
+  geom_qq(aes(sample = conemass, color = habitat))
+
+# Model:
+model01 <- lm(conemass~habitat, data = LPC_data)
+
+#Summary Statistics:
+summ_LPC <- LPC_data %>%
+  group_by(habitat) %>% 
+  summarise(mean_conemass = mean(conemass),
+            sd_conemass = sd(conemass),
+            n_conemass = n())
+
+# Ratio: 
+ratio <-(max(summ_LPC$sd_conemass))/(min(summ_LPC$sd_conemass))
+
+#Planned Comparison:
+planned <- glht(model01, linfct = 
+                  mcp(habitat = c("island.present - island.absent = 0")))
+confint(planned)
+summary(planned)
+
+# The planned comparison shows that the mean conemass of island with squirel
+# had a significantly lower mean conemass compared to the island without
+# squirels.
+# (Planned comparison: t-value: -8.596, p<0.0001)
 
 #### Chapter 15: Problem 26 ####
 # Use the data to perform the correct test.  
