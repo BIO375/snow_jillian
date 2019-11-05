@@ -1,6 +1,8 @@
-# Do before every question!
+# Do before starting question!
+
 #Clean up the working environment
 rm(list = ls())
+
 # Verify working directory
 getwd()
 
@@ -8,9 +10,11 @@ getwd()
 # ggfortify is a package that works with ggplot2 to make nice plots
 install.packages("ggfortify")
 library("ggfortify")
+
 # multcomp is used for contrasts and multiple comparisons
 install.packages("multcomp")
 library("multcomp")
+
 # nlme is used for random effects ANOVA
 install.packages("nlme")
 library("nlme")
@@ -93,7 +97,7 @@ ratio <-(max(summ_HCB$sd_HCB))/(min(summ_HCB$sd_HCB))
 
 ratio <-(max(summ_Aldrin$sd_Aldrin))/(min(summ_Aldrin$sd_Aldrin))
 
-# Graphs look generally normally distributed. Varience are equal for HCB (1.75),
+# Varience are equal for HCB/within 3 (1.75),
 # but not for Aldrin (3.819) so I would recommend transforming Aldrin data.
 
 #Transformation Log10 of Aldrin Data
@@ -118,10 +122,6 @@ ggplot(Jaffe02) +
   facet_wrap(~Depth)
 ggplot(Jaffe02)+
   geom_qq(aes(sample = Aldrin, color = Depth))
-# Histogram: Looks generally normally distruibuted. Maybe a little skew. 
-# Boxplot:
-# Q-Q plot: Suface and Middepth are less flat and still somewhat linear.
-# Bottom is better but still has a little curve 
 
 #Ratio of Transformation of Aldrin
 ratio <-(max(summ_1og10$sd_Aldrin))/(min(summ_1og10$sd_Aldrin))
@@ -130,18 +130,20 @@ ratio <-(max(summ_1og10$sd_Aldrin))/(min(summ_1og10$sd_Aldrin))
 # Mode 1 = HCB, Mode 2 = Aldrin (before transformation) and Mode 3 = 
 # log10-transformed Aldrin
 
+# Performed autopolots:
 autoplot(model01)
 autoplot(model02)
 autoplot(model03)
 
+#Performed Anova:
 anova(model01)
 anova(model02)
 anova(model03)
 
-#Perform a Tukey-Kramer on Log10-Transformed Aldrin Data
+#Performed a Tukey-Kramer on Log10-Transformed Aldrin Data:
 Tukey_Mode03 <- glht(model03, linfct = mcp(Depth = "Tukey"))
 summary(Tukey_Mode03)
 
-#Perform a Tukey-Kramer on HCB Data
+#Performed a Tukey-Kramer on HCB Data:
 Tukey_Mode01 <- glht(model01, linfct = mcp(Depth = "Tukey"))
 summary(Tukey_Mode01)
