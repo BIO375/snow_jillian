@@ -112,7 +112,7 @@ summ_1og10 <- Jaffe02 %>%
 
 model03 <- lm(Aldrin~Depth, data = Jaffe02)
 
-#New boxplots after Transformation of Aldrin
+#New boxplot, Q-Q plot and Histogram after Transformation of Aldrin
 ggplot(Jaffe02, aes(x = Depth, y = Aldrin))+
   geom_boxplot() +
   theme_bw() +
@@ -123,7 +123,7 @@ ggplot(Jaffe02) +
 ggplot(Jaffe02)+
   geom_qq(aes(sample = Aldrin, color = Depth))
 
-#Ratio of Transformation of Aldrin
+#Ratio After Transformation of Aldrin
 ratio <-(max(summ_1og10$sd_Aldrin))/(min(summ_1og10$sd_Aldrin))
 # Varienced are now equal/Within 3 (ratio = 2.087)
 
