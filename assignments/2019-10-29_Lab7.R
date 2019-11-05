@@ -22,7 +22,8 @@ tidyverse_update()
 ###Question 1####
 
 library(readr)
-Jaffe <- read_csv("datasets/demos/Jaffe.csv")
+Jaffe <- read_csv("datasets/demos/Jaffe.csv", col_types = cols(
+Depth = col_factor() ))
 View(Jaffe)
 
 head(Jaffe)
@@ -39,12 +40,14 @@ ggplot(Jaffe) +
 ggplot(Jaffe)+
   geom_qq(aes(sample = HCB, color = Depth))
 
-# Histogram: Looks normally distributed. Looks like there is not a huge skew.
-# Boxplot: Whiskers are not even. Median is not centered for all depths: 
-# Surface, Middepth and Bottom. There are also no outliers
-# Q-Q plot: Middepth and Bottlom -> not perfectly linear... 
-# For, the Suface -> pretty linear
-# Graphs look generally normal, but not perfect. 
+# Histogram: Looks fairly normally distributed. It doesn't look like there is a strong 
+# skew/hard to tell.
+# Boxplot: Whiskers are not even for Mid-depth and Bottom (both left-skewed), 
+# while Whiskers for Surface look fairly even.  Medians are not centered, 
+# but for bottom and surface means and medians are fairly close. There are also 
+# no outliers. Overall, I would say the boxplot looks fairly normal. 
+# Q-Q plot: Mid depth, Surface and Bottom look fairly linear.
+# Overall: I would say the HCB would meet the assumption of ANOVA.
 
 #Box plot, Histogram and Q-Q plot of Jaffe Data for Aldrin.
 ggplot(Jaffe, aes(x = Depth, y = Aldrin))+
@@ -56,14 +59,18 @@ ggplot(Jaffe) +
   facet_wrap(~Depth)
 ggplot(Jaffe)+
   geom_qq(aes(sample = Aldrin, color = Depth))
-# Histogram: Looks normally distributed. Maybe a little skew.
-# Boxplot: Whiskers "somewhat" even (maybe a little uneven for middepth). 
-# Median is not centered for all depths: Surface with the worst and 
-# Middepth most centered out of the 3 boxs. There is 1 outliers on bottom.
-# Q-Q plot: Bottom has some cure. Middepth and Surface are more linear, 
-# but are somewhat flat.
-# I would say generally more normal then not normal. Maybe Transform to see
-# if it will clean up, but I want to look at ratios before anything is done.
+
+# Histogram: Looks fairly normally distributed.
+# Boxplot: Whiskers look "somewhat" even for surface and mid-depth. There is 
+# definite right-skewed for bottom because of the outlier. Median is not centered 
+# for all depths. Median and means for mid-surface and surface are fairly close
+# vs. Bottom is not as close as the other two.  Bottom also has 1 outlier! 
+# Due to the skew and outlier for Bottom, I would say the boxplot is not normal.
+# Q-Q plot: Mid-depth and Surface look fairly linear, but Bottom looks more 
+# exponential rather than linear. Based on bottom, I would say that the Q-Q  plot
+# is not normal.
+# Overall: Overall: Based on the boxplot and Q-Q plot I would say that Aldrin
+# doesn't meet the assumptions of ANOVA.
 
 model01 <- lm(HCB~Depth, data = Jaffe)
 
@@ -121,7 +128,7 @@ ratio <-(max(summ_1og10$sd_Aldrin))/(min(summ_1og10$sd_Aldrin))
 # Varienced are now equal/Within 3 (ratio = 2.087)
 
 # Mode 1 = HCB, Mode 2 = Aldrin (before transformation) and Mode 3 = 
-# log-transformed Aldrin
+# log10-transformed Aldrin
 
 autoplot(model01)
 autoplot(model02)
@@ -131,6 +138,10 @@ anova(model01)
 anova(model02)
 anova(model03)
 
-#Perform a Tukey-Kramer HSD
-tukey <- glht(model03, linfct = mcp(depth = "Tukey"))
-summary(tukey)
+#Perform a Tukey-Kramer on Log10-Transformed Aldrin Data
+Tukey_Mode03 <- glht(model03, linfct = mcp(Depth = "Tukey"))
+summary(Tukey_Mode03)
+
+#Perform a Tukey-Kramer on HCB Data
+Tukey_Mode01 <- glht(model01, linfct = mcp(Depth = "Tukey"))
+summary(Tukey_Mode01)

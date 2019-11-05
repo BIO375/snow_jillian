@@ -76,3 +76,6 @@ ggplot(CO2)+
   geom_qq(aes(sample = growthrate, color = Treatments))
 
 t.test(growthrate ~ Treatments, data = CO2, var.equal = TRUE, alternative = "two.sided", conf.level = 0.95)
+
+
+#### CODE RUNS WITHOUT BREAKING 6/6 PTS, GOOD JOB ####
