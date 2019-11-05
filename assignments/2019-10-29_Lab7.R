@@ -127,7 +127,7 @@ ggplot(Jaffe02)+
 ratio <-(max(summ_1og10$sd_Aldrin))/(min(summ_1og10$sd_Aldrin))
 # Varienced are now equal/Within 3 (ratio = 2.087)
 
-# Mode 1 = HCB, Mode 2 = Aldrin (before transformation) and Mode 3 = 
+# Model 1 = HCB, Model 2 = Aldrin (before transformation) and Model 3 = 
 # log10-transformed Aldrin
 
 # Performed autopolots:
