@@ -295,8 +295,8 @@ summary(planned)
 # comparison planned before the study. As stated in (a),
 # They planned to test for a difference b/w the two male groups before the
 # experiment was carried out. As for the Tukey-Kramer (unplanned comparison),
-# it is a method that is carried out after ANOVA and the results showed no
-# diffence among means (rejected the null).
+# it is a method that is carried out after ANOVA and the null has to be
+# rejected (null hypothesis = no diffenece among groups)
 
 # C) Complete the Table by adding the test conclusion (Table results partial
 # results of Tukey-Kramer).
@@ -331,7 +331,3 @@ summary(tukey)
 # males groups (intact, major removed and minor removed). There was also 
 # a statistical significant difference b/w male major removed and the male 
 # minor removed group.
-
-
-
-
