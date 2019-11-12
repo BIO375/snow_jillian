@@ -271,8 +271,10 @@ autoplot(model01)
 
 anova(model01)
 
-# The mean rate of gain significantly differs among groups (Reject Null).
-# (Anova: F-value: 20.312, P<0.001)
+summary(model01)
+
+# The mean rate of heat gain significantly differs among groups (Reject Null).
+# (Anova: F-value: 20.312, df: 3 and 80, P<0.001)
 
 #### Chapter 15: Problem 31 (same data in both problems) ####
 # Use the data to perform the correct test.  Please show code for all steps in
