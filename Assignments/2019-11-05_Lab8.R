@@ -211,12 +211,16 @@ summary(tukey)
 # your process.
 
 library(readr)
-Crab_data <- read_csv("datasets/abd/chapter15/chap15q30FiddlerCrabFans.csv", col_types = cols(
-  crabType = col_factor() )) 
-
+Crab_data <- read_csv("datasets/abd/chapter15/chap15q30FiddlerCrabFans.csv", 
+                      col_types = cols(crabType = col_factor(levels = c("female", 
+                                                                        "intact male", "male minor removed", 
+                                                                        "male major removed"))))
 View(Crab_data)
 
 Crab_data <- slice(Crab_data,-85)
+
+Crab_data <- Crab_data %>%
+mutate(crabType = fct_recode(crabType, IntactMale = "intact male", MaleMinorRemoved = "male minor removed", MaleMajorRemoved = "male major removed"))
 
 # A) Show these data in a graph. What trends are suggested?
 
@@ -281,10 +285,13 @@ anova(model01)
 # I would do a planned comparison b/w "major removed" and "minor removed"
 
 planned <- glht(model01, linfct = 
-                  mcp(crabType = c("major removed - minor removed = 0")))
+                  mcp(crabType = c("MaleMajorRemoved - MaleMinorRemoved = 0")))
 confint(planned)
 summary(planned)
 
+# There is a significant difference b/w the two male groups "major removed"
+# and "minor revmoved"
+# (Planned Comparison: t-value: 3.187, P<0.01)
 
 # B) The table at the bottom of the page shows partial results of Tukey-Kramer
 # multiple comparisons of means. In what way does this method differ from the
