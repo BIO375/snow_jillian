@@ -26,19 +26,39 @@ ggplot(data = fowler) +
   geom_point(mapping = aes(x = FERTILIZER, y = YIELD ))
 
 ggplot(data = fowler)+
-  geom_histogram(aes(YIELD), binwidth = 25)
+  geom_boxplot(aes("", YIELD))
 
 ggplot(data = fowler)+
   geom_qq(aes(sample = YIELD))
+
+# Box plot: Looks normally distributed 
+# Q-q plot: Pretty linear. Looks normally distributed.
 
 model01 <- lm(YIELD ~ FERTILIZER, data = fowler)
 
 autoplot(model01, smooth.colour = NA)
 
+# the normal Q-Q of the residuals: looks normal!
+# Residuals vs. fitted plot: There is no fan shape!
+
+fowler_plus <- augment(model01)
+ggplot(data = Fowler)+
+  geom_point(aes(x = YIELD, y= .resid))
+
+# residual by x plot: Looks good! No fan shape.
+
 summary(model01)
 
-# (Linear regression: Intercept = 51.93333 + 0.81139(Fertilzer);df = 1, 8, F=94.04, P<0.0001)
+# (Linear regression: Yield = 51.93333 + 0.81139 (Fertilzer);df = 1, 8, F=94.04, P<0.0001)
 # R = 0.9216
+
+ggplot(data = fowler, aes(x = YIELD, y = FERTILIZER)) +
+  geom_point() +
+  geom_smooth(method = "lm", level=0.95) +
+  theme_bw()+
+  labs( x = "Yield", y = "Fertilizer")
+
+
 
 
 
