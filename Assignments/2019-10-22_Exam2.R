@@ -27,6 +27,12 @@ ggplot(untidy_feathers) +
 ggplot(untidy_feathers)+
   geom_qq(aes(sample = diff))
 
+summ_untidy_feathers <- untidy_feathers %>%
+  group_by(diff) %>% 
+  summarise(mean_diff = mean(diff),
+            sd_diff = sd(diff()),
+            n_diff = n())
+
 t.test(untidy_feathers$typical, untidy_feathers$odd, 
        alternative = "less", paired =  TRUE, conf.level = 0.95)
 
@@ -48,6 +54,8 @@ ggplot(untidy_baker)+
   geom_qq(aes(sample = diff))
 
 SignTest(untidy_baker$diff, alternative = "less", mu = 0, conf.level = 0.95)
+
+SignTest(untidy_baker$diff, alternative = "greater", mu = 0, conf.level = 0.95)
 
 #Problem 11####
 
