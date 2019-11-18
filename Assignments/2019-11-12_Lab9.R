@@ -57,11 +57,3 @@ ggplot(data = fowler, aes(x = YIELD, y = FERTILIZER)) +
   labs( x = "Yield", y = "Fertilizer")
 
 # A mjority of the points are within the 95% confidence interval.
-
-
-
-
-
-
-
-
