@@ -24,7 +24,7 @@ tidyverse_update()
 # x: the number of observed successes
 # n: the number of trials
 # p: hypothesized probability of success *Needs to be a number between 0 and 1*
-# alternative: the alternative hypothesis (takes "two.sided", "less", or "greater")
+# alternative: the al ternative hypothesis (takes "two.sided", "less", or "greater")
 # conf.level: confidence level for the CI returned in analysis
 
 # You don't even need to read in a file to do this!
@@ -43,7 +43,7 @@ model02 <- binom.test(x= 28, n=41, p=0.5, alternative = "greater", conf.level = 
 model02
 
 # So we can conclude that females occured more frequently than expected in the wilderness population in Alaska 
-# (binomial test: P < 0.05, n=46) but not in the Kevo population (binomial test: P > 0.05 n=41).
+# (binomial test: P < 0.05, n=41) but not in the Kevo population (binomial test: P > 0.05 n=46).
 
 ### Chi-squared goodness of fit ####
 
