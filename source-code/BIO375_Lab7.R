@@ -155,7 +155,7 @@ summary(planned)
 tukey <- glht(model01, linfct = mcp(parasite = "Tukey"))
 summary(tukey)
 
-### Non-parametric Kruskal-Wallis test ####
+### Non-parametric Kruskal-Wallis test #### 
 # This is a very simple test output, it gives you a test statistic, df, and p
 
 kruskal.test(growth.rate ~ parasite, data = daphnia)
