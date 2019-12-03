@@ -29,6 +29,8 @@ model01 <- lm(Distance ~ Age , data = DriverVision)
 
 autoplot(model01, smooth.colour = NA)
 
+### CODE BREAKS BECAUSE LIBRARY BROOM NOT LOADED ####
+
 DriverVision_plus <- augment(model01)
 ggplot(data = DriverVision_plus)+
   geom_point(aes(x = Age, y= .resid))
@@ -41,4 +43,5 @@ ggplot(data = DriverVision, aes(x = Age, y = Distance)) +
 
 summary(model01)
 
+#### Code breaks once because library "broom" not loaded ####
 
