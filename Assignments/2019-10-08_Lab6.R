@@ -202,4 +202,4 @@ wilcox.test(secondsAggressiveActivity ~ genotype, data = FishBoldness_data, alte
 
 # The effect is not zero
 
-
+#### 24/24 code runs without breaking ####

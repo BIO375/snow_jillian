@@ -147,3 +147,5 @@ summary(Tukey_Mode03)
 #Performed a Tukey-Kramer on HCB Data:
 Tukey_Mode01 <- glht(model01, linfct = mcp(Depth = "Tukey"))
 summary(Tukey_Mode01)
+
+#### 10/10 code runs without breaking ####

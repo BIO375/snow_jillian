@@ -132,4 +132,7 @@ tidyverse_update()
 model02 <-chisq.test(x = davis$observed, p = davis$expected_p)
 model02
 
+# CODE BREAKS LINE 108 BECAUSE THERE IS NO GROUP CALLED CONTROL
+# CODE BREAKS LIN 132 BECAUSE DID NOT READ IN DAVIS.CSV
 
+### 8/10 PTS ####
